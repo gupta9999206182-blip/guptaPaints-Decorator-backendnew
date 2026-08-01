@@ -29,6 +29,11 @@ app.get("/api/health", (req, res) => res.json({ status: "ok", company: "Gupta Pa
 app.use("/api/enquiries", enquiryRoutes);
 app.use("/api/services", serviceRoutes);
 app.use("/api/testimonials", testimonialRoutes);
+app.post("/api/contact", enquiryLimiter, (req, res) => {
+  // This endpoint can be used for a contact form submission
+  // For now, it just returns a success message
+  res.json({ message: "Contact form submitted successfully." });
+});
 
 // --- Start ---
 connectDB().then(() => {
